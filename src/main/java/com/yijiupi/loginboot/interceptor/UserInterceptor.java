@@ -2,6 +2,8 @@ package com.yijiupi.loginboot.interceptor;
 
 import com.yijiupi.loginboot.controller.UserController;
 import com.yijiupi.loginboot.pojo.UserPO;
+import com.yijiupi.loginboot.pojo.UserVO;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -27,9 +29,9 @@ public class UserInterceptor implements HandlerInterceptor{
         LOGGER.info("============================拦截器启动==============================");
         request.setAttribute("starttime",System.currentTimeMillis());
         //拦截请求
-        Object obj = request.getSession().getAttribute(USER_SESSION);
-        if (null == obj || !(obj instanceof UserPO)){
-            response.sendRedirect(request.getContextPath() + "/login");
+        Object obj = request.getSession().getAttribute(USER_STATE);
+        if (null == obj){
+            response.sendRedirect(request.getContextPath() + "/registerForm");
             return false;
         }
         return true;

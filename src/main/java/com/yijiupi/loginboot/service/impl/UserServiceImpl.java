@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static com.yijiupi.loginboot.util.CommonUtil.*;
+import static com.yijiupi.loginboot.util.ConvertUtil.*;
 
 /**
 *@Author: ZhangZhe
@@ -56,38 +57,6 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    /**
-     *
-     * @param userVO
-     * @return userPO
-     */
-    private UserPO convertToPO(UserVO userVO){
-        LOGGER.info("将PO转化成PO");
-        if (null == userVO){
-            return null;
-        }
-        UserPO userPO = new UserPO();
-        userPO.setUserName(userVO.getUserName());
-        userPO.setPassword(userVO.getPassword());
-        return userPO;
-    }
-
-    /**
-     *
-     * @param userPO
-     * @return userVO
-     */
-    private UserVO convertToVO(UserPO userPO){
-        LOGGER.info("将VO转成PO");
-        if (null == userPO){
-            return null;
-        }
-        UserVO userVO = new UserVO();
-        userVO.setId(userPO.getId());
-        userVO.setUserName(userPO.getUserName());
-        userVO.setPassword(userPO.getPassword());
-        return userVO;
-    }
 
 
 }

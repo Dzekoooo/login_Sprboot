@@ -18,7 +18,6 @@ import static com.yijiupi.loginboot.util.CommonUtil.*;
 *@Date: 13:49 2017/12/7
 */
 
-
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -58,7 +57,7 @@ public class UserController {
     public ModelAndView register(@RequestParam(value = "name", required = false)  String userName,
                                  @RequestParam(value = "userPass", required = false) String password,
                                 @RequestParam(value = "userPass1", required = false) String password1,
-                         ModelAndView mv) {
+                         ModelAndView mv, HttpSession session) {
         //判断用户名是否存在
         UserVO userVO = userService.checkUser(userName);
         if (null != userVO){
@@ -72,6 +71,7 @@ public class UserController {
             String p = Md5.getMD5(password);
             boolean registerResult = userService.register(userName, p);
             if (false != registerResult){
+                session.setAttribute(USER_STATE, registerResult);
                 mv.addObject("注册成功，直接登录");
                 mv.setViewName(LOGIN);
                 return mv;
@@ -83,4 +83,5 @@ public class UserController {
         mv.setViewName(REGISTERFORM);
         return mv;
     }
+
 }

@@ -13,7 +13,7 @@ public class CommonUtil {
     public static final String LOGINFORM = "loginForm";
     public static final String REGISTERFORM = "registerForm";
     public static final String USER_SESSION = "user_session";
-
+    public static final String USER_STATE = "user_state";
 
     public static final Integer MIN_LENGTH = 3;
     public static final Integer MAX_LENGTH = 8;
